@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Radar ESG</title>
+    <style>
+        /* Resetando margem e preenchimento do corpo */
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative; /* Adiciona posição relativa para referenciar elementos filhos */
+        }
+
+        /* Centralize o título "Radar ESG" */
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif; /* Adiciona uma fonte personalizada */
+            background-color: #2E8B57; /* Adiciona uma cor de fundo */
+            color: #fff; /* Define a cor do texto como branco */
+            padding: 20px; /* Adiciona espaço ao redor do título */
+            margin: 0; /* Remove a margem para eliminar o espaço entre o título e as imagens */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona um sombreado sutil */
+        }
+
+        .image-container {
+            position: relative; /* Adiciona a posição relativa para o posicionamento absoluto da faixa verde */
+        }
+
+        .image-box {
+            display: flex;
+            overflow-x: auto; /* Adicionado para rolar horizontalmente caso haja muitas imagens */
+        }
+
+        .image-box img {
+            width: 300px; /* Amplie o tamanho das imagens */
+            height: auto;
+            margin-right: 10px; /* Adicionado espaçamento entre as imagens */
+        }
+
+        /* Estiliza a faixa verde */  
+        .green-bar {
+            background-color: #2E8B57; /* Cor de fundo verde */
+            color: #fff; /* Cor do texto */
+            text-align: center; /* Centraliza o texto */
+            padding: 20px 0; /* Adiciona preenchimento superior e inferior */
+            width: 100%; /* Define a largura como 100% */
+            position: absolute; /* Posiciona absolutamente em relação ao body */
+            bottom: 0; /* Alinha a faixa verde na parte inferior do body */
+            left: 0; /* Alinha a faixa verde à esquerda do body */
+        }
+
+        footer {
+            background-color: #2E8B57; /* Cor de fundo verde */
+            color: #fff; /* Cor do texto */
+            text-align: center; /* Centraliza o texto */
+            padding: 20px 0; /* Adiciona preenchimento superior e inferior */
+            width: 80%; /* Define a largura como 100% */
+            margin: 0 auto; /* Centraliza o footer horizontalmente */
+            bottom: 0; /* Alinha o rodapé na parte inferior da tela */
+            left: 0; /* Alinha o rodapé à esquerda da tela */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Radar ESG</h1>
+        <div class="image-container">
+            <div class="image-box">
+                <img src="https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="esg1">
+                <img src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="esg2">
+                <img src="https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="esg3">
+                <img src="https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="esg4">
+                <img src="https://images.pexels.com/photos/580900/pexels-photo-580900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="esg5">
+            </div>
+            <!-- Faixa verde -->
+            <div class="green-bar"></div>
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <h2>Qual a importância da pauta?</h2>
+            <p>As pautas relacionadas à agenda ESG (sigla em inglês para meio ambiente, social e governança corporativa) passaram a dominar o mercado corporativo nos últimos anos, com este se tornando o foco central dos discursos das principais empresas do Brasil.</p>
+            <p>Segundo o Google Trends, ferramenta que mostra o volume de buscas sobre um determinado assunto no site, o interesse pelo ESG atingiu, em junho do ano passado, o seu nível mais alto em 19 anos.</p>
+            <p>Além disso, cerca de US$2,79 trilhões de ativos financeiros (cerca de 13 trilhões de reais) estão sob gestão dos chamados fundos verdes - volume equivalente a 7% dos ativos sob gestão no mundo, segundo dados divulgados pelo Morgan Stanley.</p>
+            <p>Dentro deste cenário e com o governo de Luiz Inácio Lula da Silva (PT) tendo como uma das suas principais propostas desenvolver uma economia de baixo carbono, a pauta ESG se torna um tópico essencial para a discussão econômica.</p>
+        </article>
+        
+        <article>
+            <h2>O que a função faz?</h2>
+            <p>Com tantas ações, eventos, discursos e votações acontecendo ao mesmo tempo, nem sempre é possível acompanhar tudo. Pensando nisso, a ideia do Radar é compilar as últimas notícias das editorias de economia de três sites diferentes (um estatal, um portal e um site tradicional) em um só lugar.</p>
+            <p>Os sites a serem monitorados são:</p>
+            <ul>
+                <li><a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias">Ministério da Fazenda</a></li>
+                <li><a href="https://economia.uol.com.br/ultimas/">UOL</a></li>
+                <li><a href="https://www.estadao.com.br/economia/">Estadão</a></li>            
+            </ul>
+        </article>
+    </main>
+
+    <h2>Faça a pesquisa do seu termo ESG abaixo:</h2>
+    <!-- Formulário de pesquisa -->
+    <form action="/radaresg" method="GET">
+        <input type="text" name="termo" placeholder="Digite o termo de pesquisa">
+        <input type="submit" value="Pesquisar">
+    </form>
+
+    <h2>Ministério da Fazenda</h2>
+    <ul>
+        {% for noticia in fazenda %}
+            <li><a href="{{ noticia[1] }}">{{ noticia[0] }}</a> - {{ noticia[3] }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>UOL</h2>
+    <ul>
+        {% for noticia in uol %}
+            <li><a href="{{ noticia[1] }}">{{ noticia[0] }}</a> - {{ noticia[3] }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Estadão</h2>
+    <ul>
+        {% for noticia in estadao %}
+            <li><a href="{{ noticia[1] }}">{{ noticia[0] }}</a> - {{ noticia[3] }}</li>
+        {% endfor %}
+    </ul>
+
+    <footer class="footer">
+        <p>© 2024 Beatriz Capirazi. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
